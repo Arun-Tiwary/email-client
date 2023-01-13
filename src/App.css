@@ -1,10 +1,10 @@
-.App {
-  text-align: center;
-}
+@import "./Components/Filters/filters.css";
+@import "./Components/EmailList/emailList.css";
+@import "./colorCode.css";
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,0 +1,36 @@
+.filters {
+  display: flex;
+  flex-direction: row;
+  /* margin-top: 10px;
+  margin-left: 2px; */
+  margin: 10px 5px 2px 20px;
+  color: var(--text);
+}
+
+.unfilterd-block {
+  display: flex;
+  line-height: 19px;
+  border-radius: 2px;
+  color: var(--text);
+  padding: 4px 20px;
+  height: 20px;
+  margin-top: 16px;
+  margin-left: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.filterd-block {
+  display: flex;
+  line-height: 19px;
+  border-radius: 2px;
+  color: var(--text);
+  background-color: var(--read-background);
+  border: 2px solid var(--border);
+  padding: 4px 20px;
+  border-radius: 20px;
+  height: 20px;
+  margin-top: 16px;
+  margin-left: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}

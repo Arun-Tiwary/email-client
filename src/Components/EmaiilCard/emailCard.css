@@ -1,0 +1,93 @@
+.EmailCard {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin: 10px 25px;
+  background-color: var(--background);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 4px;
+  font-size: small;
+  border: 1px solid var(--border);
+}
+
+.card-icon {
+  margin: 8px 0px 0px 16px;
+  display: flex;
+  border-radius: 50%;
+  max-height: 71%;
+  max-width: 50%;
+  height: 50px;
+  /* margin: 2px 0px 0px 20px; */
+  background-color: var(--accent);
+}
+.icon-text {
+  color: var(--background);
+  display: flex;
+  position: relative;
+  left: 12px;
+  font-size: 36px;
+  font-style: normal;
+  align-self: center;
+}
+.card-details {
+  display: grid;
+  padding-top: 4px;
+}
+.card-placeholder {
+  color: var(--text);
+}
+.card-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.card-subject {
+  padding-bottom: 20px;
+}
+.card-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-bottom: 15px;
+}
+.card-date {
+  padding-bottom: 10px;
+}
+
+h1 {
+  margin: 50px 0 0;
+  font-size: 40px;
+}
+
+p.expertise {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.container {
+  width: 600px;
+  height: 350px;
+  margin: 50px auto 0;
+  border: 5px solid #000;
+  background: #1380a1;
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
+.profile-pic img {
+  width: 100%;
+  margin: 20px;
+  border: 5px solid #000;
+}
+
+.information {
+  box-sizing: border-box;
+  padding: 20px 40px 20px 50px;
+}
+
+address {
+  font-size: 24px;
+  margin-bottom: 10px;
+}

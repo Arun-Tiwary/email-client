@@ -1,10 +1,11 @@
-@import "./Components/Filters/filters.css";
-@import "./Components/EmailList/emailList.css";
 @import "./colorCode.css";
+@import "./Components/route.css";
 
 .App {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
+  overflow-y: hidden;
+  background-color: var(--read-background);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -36,3 +37,5 @@
     transform: rotate(360deg);
   }
 }
+
+/* ///// */

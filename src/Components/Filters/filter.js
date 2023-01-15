@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Filters = () => {
   const [unread, setUnread] = useState(false);
   const [read, setRead] = useState(false);
-  const [favourites, setFavourites] = useState(false);
+  const [favorites, setFavourites] = useState(false);
+
+  const { byRead, byUnread, byFavorites, emailData } = useSelector(
+    (state) => state
+  );
+  console.log(byRead, byUnread, byFavorites, emailData);
 
   return (
     <div className="filters">
@@ -35,9 +41,9 @@ const Filters = () => {
           setRead(false);
           setFavourites(true);
         }}
-        className={favourites ? "filterd-block" : "unfilterd-block"}
+        className={favorites ? "filterd-block" : "unfilterd-block"}
       >
-        favourites
+        favorites
       </div>
     </div>
   );

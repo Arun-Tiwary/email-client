@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SORT_BY_FAVORITES,
+  SORT_BY_READ,
+  SORT_BY_UNREAD,
+} from "../../actions/action1";
 
 const Filters = () => {
-  const [unread, setUnread] = useState(false);
-  const [read, setRead] = useState(false);
-  const [favorites, setFavourites] = useState(false);
-
   const { byRead, byUnread, byFavorites, emailData } = useSelector(
     (state) => state
   );
+
+  const dispatch = useDispatch();
   console.log(byRead, byUnread, byFavorites, emailData);
 
   return (
@@ -17,31 +19,29 @@ const Filters = () => {
 
       <div
         onClick={() => {
-          setUnread(true);
-          setRead(false);
-          setFavourites(false);
+          dispatch({ type: SORT_BY_UNREAD, payload: true });
+          dispatch({ type: SORT_BY_READ, payload: false });
+          dispatch({ type: "FILTER_TYPE", payload: "unread" });
         }}
-        className={unread ? "filterd-block" : "unfilterd-block"}
+        className={byUnread ? "filterd-block" : "unfilterd-block"}
       >
         Unread
       </div>
       <div
         onClick={() => {
-          setUnread(false);
-          setRead(true);
-          setFavourites(false);
+          dispatch({ type: SORT_BY_READ, payload: true });
+          dispatch({ type: SORT_BY_UNREAD, payload: false });
+          dispatch({ type: "FILTER_TYPE", payload: "read" });
         }}
-        className={read ? "filterd-block" : "unfilterd-block"}
+        className={byRead ? "filterd-block" : "unfilterd-block"}
       >
         Read
       </div>
       <div
         onClick={() => {
-          setUnread(false);
-          setRead(false);
-          setFavourites(true);
+          dispatch({ type: SORT_BY_FAVORITES, payload: !byFavorites });
         }}
-        className={favorites ? "filterd-block" : "unfilterd-block"}
+        className={byFavorites ? "filterd-block" : "unfilterd-block"}
       >
         favorites
       </div>

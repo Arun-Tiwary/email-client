@@ -1,18 +1,22 @@
 .EmailBody {
   display: grid;
-  grid-template-columns: 1.5fr 2fr;
+  /* grid-template-columns: 1.5fr 2fr; */
+  grid-template-columns: auto auto;
   margin: 20px 10px 10px 0px;
   grid-column-gap: 0px;
   background-color: var(--background);
 }
 
 .email-list {
+  width: 100%;
+  grid-column: 1;
   border-radius: 20px;
   /* overflow-y: scroll;
   max-height: 645px; */
 }
 
 .template-body {
+  grid-column: 2;
   grid-column-end: inherit;
   border-radius: 20px;
 }

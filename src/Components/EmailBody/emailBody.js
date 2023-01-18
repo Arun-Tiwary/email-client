@@ -1,42 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import BodyCard from "../BodyCard/bodyCard";
-
 import EmailCard from "../EmaiilCard/emailCard";
 
 const EmailBody = () => {
+  console.log("Emailbody entered");
   const { byRead, byUnread, byFavorites, emailList } = useSelector(
     (state) => state
   );
 
   const transformedData = () => {
-    let sortedList = emailList;
+    let filterdList = emailList;
 
     if (byRead) {
-      sortedList = emailList.filter((item) => item.isRead);
-      console.log("sortedList", sortedList);
+      filterdList = emailList.filter((item) => item.isRead);
+      console.log("filterdList", filterdList);
     }
 
     if (byUnread) {
-      sortedList = emailList.filter((item) => !item.isRead);
+      filterdList = emailList.filter((item) => !item.isRead);
     }
-
     if (byFavorites) {
-      sortedList = emailList.filter((item) => item.isFav);
+      filterdList = emailList.filter((item) => item.isFav);
     }
 
-    return sortedList;
+    return filterdList;
   };
 
-  console.log("emailBody.js => emailList", emailList);
-
+  console.log("Emailbody ended");
+  // var temp = transformedData();
   return (
     <div className="EmailBody">
       <div className="email-list">
         {emailList &&
-          transformedData().map((item) => <EmailCard data={item}></EmailCard>)}
+          transformedData().map((item) => (
+            <EmailCard key={item.id} data={item}></EmailCard>
+          ))}
       </div>
-      {<div className="template-body">{<BodyCard />}</div>}
+      {transformedData() && transformedData().length > 0 && (
+        <div className="template-body">{<BodyCard />}</div>
+      )}
     </div>
   );
 };

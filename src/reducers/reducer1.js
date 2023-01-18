@@ -1,5 +1,6 @@
 import {
   ADD_DATA,
+  FILTER_TYPE,
   MARK_AS_FAVORITES,
   MARK_AS_READ,
   SORT_BY_FAVORITES,
@@ -47,7 +48,16 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case "FILTER_TYPE": {
+    case "REMOVE_FROM_FAVORITES": {
+      return {
+        ...state,
+        emailList: state.emailList.map((item) =>
+          item.id === action.payload.id ? { ...item, isFav: false } : item
+        ),
+      };
+    }
+
+    case FILTER_TYPE: {
       return { ...state, filterType: action.payload };
     }
 
@@ -65,6 +75,10 @@ const reducer = (state = initialState, action) => {
 
     case "META_DATA": {
       return { ...state, meta_data: action.payload };
+    }
+
+    case "FORMATED_DATE": {
+      return { ...state, formatedDate: action.payload };
     }
     default:
       return state;

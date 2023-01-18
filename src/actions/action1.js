@@ -8,3 +8,4 @@ export const MARK_AS_FAVORITES = "MARK_AS_FAVORITES";
 export const isRead = "isRead";
 export const isUnread = "isUnread";
 export const isFavorite = "isFavorite";
+export const FILTER_TYPE = "FILTER_TYPE";

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 100px 1fr;
   margin: 10px 25px;
-  background-color: var(--background);
+  /* background-color: green; */
   cursor: pointer;
   border-radius: 10px;
   padding: 4px;

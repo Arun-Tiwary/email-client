@@ -11,17 +11,8 @@ const ContextPovider = () => {
     const {
       data: { list },
     } = await axios.get("https://flipkart-email-mock.now.sh/");
-    // setDataLog(list);
     dispatch({ type: ADD_DATA, payload: { emailList: list } });
   };
-
-  // const bodyData = async () => {
-  //   const {
-  //     data: { body },
-  //   } = await axios.get("https://flipkart-email-mock.now.sh/?id=3");
-  //   // dispatch({type: BODY_DATA, payload:{...emailList,body:data}})
-  //   console.log("BodyData", body);
-  // };
 
   useEffect(() => {
     fetchData();

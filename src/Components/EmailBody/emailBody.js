@@ -1,15 +1,31 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_DATA } from "../../actions/action1";
+import { emailData } from "../../Utils/emailData";
+
 import BodyCard from "../BodyCard/bodyCard";
 import EmailCard from "../EmaiilCard/emailCard";
 
 const EmailBody = () => {
   console.log("Emailbody entered");
-  const { byRead, byUnread, byFavorites, emailList } = useSelector(
+  const { byRead, byUnread, byFavorites, emailList, meta_data } = useSelector(
     (state) => state
   );
+  const dispatch = useDispatch();
 
-  const transformedData = () => {
+  //network call to get email list.
+  useEffect(() => {
+    async function fetchdata() {
+      const list = await emailData();
+
+      dispatch({ type: ADD_DATA, payload: { emailList: list } });
+    }
+    fetchdata();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  //function to filter email list
+  const transformedList = () => {
     let filterdList = emailList;
 
     if (byRead) {
@@ -27,19 +43,19 @@ const EmailBody = () => {
     return filterdList;
   };
 
-  console.log("Emailbody ended");
-  // var temp = transformedData();
+  // console.log("Emailbody ended");
   return (
     <div className="EmailBody">
       <div className="email-list">
         {emailList &&
-          transformedData().map((item) => (
+          transformedList().map((item) => (
             <EmailCard key={item.id} data={item}></EmailCard>
           ))}
       </div>
-      {transformedData() && transformedData().length > 0 && (
-        <div className="template-body">{<BodyCard />}</div>
-      )}
+      {meta_data &&
+        transformedList() &&
+        transformedList().length > 0 &&
+        !byFavorites && <div className="template-body">{<BodyCard />}</div>}
     </div>
   );
 };

@@ -1,35 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MARK_AS_FAVORITES } from "../../actions/action1";
-// import { formattedDate } from "../EmaiilCard/emailCard";
+import {
+  MARK_AS_FAVORITES,
+  REMOVE_FROM_FAVORITES,
+} from "../../actions/action1";
+import { giveMeBody } from "../../Utils/bodyData";
+import { dateConverter } from "../../Utils/dateFomatt";
 
 const BodyCard = ({ value }) => {
+  const [bodyData, setData] = useState("");
+
+  const { meta_data, emailList, buttonName, recived_id } = useSelector(
+    (state) => state
+  );
+  const dispatch = useDispatch();
+
+  //network call to get body data.
+  useEffect(() => {
+    async function fetchdata() {
+      const body = await giveMeBody(recived_id);
+      setData(body);
+    }
+    fetchdata();
+  }, [recived_id]);
+
+  let BUTTON_NAME = "ADD TO FAVORITES";
+
   const ADD_TO_FAV = "ADD TO FAVORITES";
 
   const REMOVE_FROM_FAV = "REMOVE FROM FAVORITES";
 
-  const [button, setButton] = useState(ADD_TO_FAV);
-
-  const { bodyData, meta_data, emailList, formatedDate } = useSelector(
-    (state) => state
-  );
-
+  // taking out first name from name
   const imageValue = meta_data && meta_data.from.name.split("");
-
-  const dispatch = useDispatch();
-  //  const checkFav =
-  //    meta_data &&
-  //    emailList &&
-  //    emailList.filter((item) => meta_data.id === item.id);
-  //  console.log("checkFav", checkFav);
 
   const checkFav =
     meta_data &&
     emailList &&
     emailList.filter((item) => meta_data.id === item.id);
-  // console.log(checkFav, "checkFav", meta_data);
 
-  // console.log("bodycard", value);
+  // function to get date in correct format
+  let originalDate = meta_data && new Date(meta_data.date);
+  const newDateFormat = dateConverter(originalDate);
+
+  console.log(meta_data, "checkFav, ", checkFav);
+
   return (
     <>
       {meta_data && (
@@ -56,35 +70,40 @@ const BodyCard = ({ value }) => {
             </div>
             <div className="header-subject">
               {meta_data && meta_data.subject}
-              <text className="card-placeholder">
-                {/* {meta_data && meta_data.date} */}
-                {formatedDate}
-              </text>
+              <text className="card-placeholder">{newDateFormat}</text>
             </div>
             <div className="header-button">
               <button
                 className="favorite-button"
                 onClick={() => {
-                  if (button === ADD_TO_FAV && checkFav.isFAv === undefined) {
-                    dispatch({ type: MARK_AS_FAVORITES, payload: meta_data });
-                    setButton(REMOVE_FROM_FAV);
-                  }
-                  if (button === REMOVE_FROM_FAV) {
+                  if (buttonName === ADD_TO_FAV) {
                     dispatch({
-                      type: "REMOVE_FROM_FAVORITES",
+                      type: MARK_AS_FAVORITES,
                       payload: meta_data,
                     });
-                    setButton(ADD_TO_FAV);
+                    dispatch({
+                      type: BUTTON_NAME,
+                      payload: REMOVE_FROM_FAV,
+                    });
+                  }
+                  if (buttonName === REMOVE_FROM_FAV) {
+                    dispatch({
+                      type: REMOVE_FROM_FAVORITES,
+                      payload: meta_data,
+                    });
+
+                    dispatch({
+                      type: BUTTON_NAME,
+                      payload: ADD_TO_FAV,
+                    });
                   }
                 }}
               >
-                {button}
+                {buttonName}
               </button>
             </div>
           </div>
-
           <div>
-            {/* <p className="body-description">{bodyData && bodyData}</p> */}
             {bodyData && (
               <div
                 className="body-description"

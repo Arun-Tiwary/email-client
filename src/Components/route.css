@@ -1,3 +1,4 @@
+/* single place to export all css files */
 @import "./BodyCard/bodyCard.css";
 @import "./EmaiilCard/emailCard.css";
 @import "./EmailBody/emailBody.css";

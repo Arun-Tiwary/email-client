@@ -1,13 +1,19 @@
 import {
   ADD_DATA,
+  BUTTON_NAME,
+  CURRENT_ID,
   FILTER_TYPE,
   MARK_AS_FAVORITES,
   MARK_AS_READ,
+  META_DATA,
+  RECIVED_ID,
+  REMOVE_FROM_FAVORITES,
   SORT_BY_FAVORITES,
   SORT_BY_READ,
   SORT_BY_UNREAD,
 } from "../actions/action1";
 
+// intial state
 const initialState = {
   filterType: "",
   byRead: false,
@@ -15,6 +21,7 @@ const initialState = {
   byFavorites: false,
 };
 
+//reducer function to manipulate state
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SORT_BY_READ:
@@ -48,7 +55,7 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case "REMOVE_FROM_FAVORITES": {
+    case REMOVE_FROM_FAVORITES: {
       return {
         ...state,
         emailList: state.emailList.map((item) =>
@@ -61,25 +68,22 @@ const reducer = (state = initialState, action) => {
       return { ...state, filterType: action.payload };
     }
 
-    case "CURRENT_ID": {
-      return { ...state, cuurent_id: action.payload };
+    case CURRENT_ID: {
+      return { ...state, current_id: action.payload };
     }
 
-    case "BODY_DATA": {
-      return { ...state, bodyData: action.payload };
-    }
-
-    case "RECIVED_ID": {
+    case RECIVED_ID: {
       return { ...state, recived_id: action.payload };
     }
 
-    case "META_DATA": {
+    case META_DATA: {
       return { ...state, meta_data: action.payload };
     }
 
-    case "FORMATED_DATE": {
-      return { ...state, formatedDate: action.payload };
+    case BUTTON_NAME: {
+      return { ...state, buttonName: action.payload };
     }
+
     default:
       return state;
   }

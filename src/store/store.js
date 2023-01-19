@@ -1,7 +1,4 @@
-// import React from "react";
-
-// import counterReducer from "../features/counter/counterSlice";
-
+//configure redux store
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "../reducers/reducer1";
 

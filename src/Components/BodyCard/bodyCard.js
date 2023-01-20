@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  MARK_AS_FAVORITES,
-  REMOVE_FROM_FAVORITES,
-} from "../../actions/action1";
+import { MARK_AS_FAVORITES } from "../../actions/action1";
 import { giveMeBody } from "../../Utils/bodyData";
 import { dateConverter } from "../../Utils/dateFomatt";
 
 const BodyCard = ({ value }) => {
   const [bodyData, setData] = useState("");
 
-  const { meta_data, emailList, buttonName, recived_id } = useSelector(
-    (state) => state
-  );
+  const { meta_data, recived_id } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   //network call to get body data.
@@ -24,25 +19,26 @@ const BodyCard = ({ value }) => {
     fetchdata();
   }, [recived_id]);
 
-  let BUTTON_NAME = "ADD TO FAVORITES";
+  // let BUTTON_NAME = "ADD TO FAVORITES";
 
-  const ADD_TO_FAV = "ADD TO FAVORITES";
+  // const ADD_TO_FAV = "ADD TO FAVORITES";
 
-  const REMOVE_FROM_FAV = "REMOVE FROM FAVORITES";
+  // const REMOVE_FROM_FAV = "REMOVE FROM FAVORITES";
 
   // taking out first name from name
   const imageValue = meta_data && meta_data.from.name.split("");
 
-  const checkFav =
-    meta_data &&
-    emailList &&
-    emailList.filter((item) => meta_data.id === item.id);
+  // const checkFav =
+  //   meta_data &&
+  //   emailList &&
+  //   emailList.filter((item) => meta_data.id === item.id);
 
   // function to get date in correct format
   let originalDate = meta_data && new Date(meta_data.date);
   const newDateFormat = dateConverter(originalDate);
 
-  console.log(meta_data, "checkFav, ", checkFav);
+  // console.log(meta_data, "checkFav, ", checkFav);
+  // console.log(buttonName);
 
   return (
     <>
@@ -73,9 +69,78 @@ const BodyCard = ({ value }) => {
               <text className="card-placeholder">{newDateFormat}</text>
             </div>
             <div className="header-button">
+              {/* <div>
+                {buttonName === ADD_TO_FAV ? (
+                  <button
+                    onClick={() => {
+                      // console.log(" on CLICK", buttonName);
+                      dispatch({ type: BUTTON_NAME, payload: ADD_TO_FAV });
+                      dispatch({
+                        type: MARK_AS_FAVORITES,
+                        payload: meta_data,
+                      });
+                    }}
+                  >
+                    Add to fav button
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      dispatch({
+                        type: REMOVE_FROM_FAVORITES,
+                        payload: meta_data,
+                      });
+                    }}
+                  >
+                    remove from favorite button
+                  </button>
+                )}
+              </div> */}
+
+              {/* ///////////////////////// */}
               <button
                 className="favorite-button"
                 onClick={() => {
+                  dispatch({
+                    type: MARK_AS_FAVORITES,
+                    payload: meta_data,
+                  });
+                }}
+              >
+                Add to Favorite
+              </button>
+
+              {/*/////////////////////////  */}
+
+              {/* <button
+                onClick={() => {
+                  if (checkFav.isFav === true) {
+                    dispatch({
+                      type: REMOVE_FROM_FAVORITES,
+                      payload: meta_data,
+                    });
+                    dispatch({ type: BUTTON_NAME, payload: REMOVE_FROM_FAV });
+                  } else if (
+                    checkFav.isFav === undefined ||
+                    checkFav.isFav === false
+                  ) {
+                    dispatch({
+                      type: MARK_AS_FAVORITES,
+                      payload: meta_data,
+                    });
+                    dispatch({ type: BUTTON_NAME, payload: REMOVE_FROM_FAV });
+                  }
+                }}
+              >
+                {buttonName}
+              </button> */}
+
+              {/* //////////////////////////////////// */}
+
+              {/* <button
+                className="favorite-button"
+                onClick={() =>
+                   {
                   if (buttonName === ADD_TO_FAV) {
                     dispatch({
                       type: MARK_AS_FAVORITES,
@@ -97,10 +162,11 @@ const BodyCard = ({ value }) => {
                       payload: ADD_TO_FAV,
                     });
                   }
-                }}
+                }
+              }
               >
                 {buttonName}
-              </button>
+              </button> */}
             </div>
           </div>
           <div>

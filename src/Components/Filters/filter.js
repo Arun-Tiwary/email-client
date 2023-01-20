@@ -7,48 +7,13 @@ import {
 } from "../../actions/action1";
 
 const Filters = () => {
-  const { byRead, byUnread, byFavorites, emailList, meta_data } = useSelector(
+  const { byRead, byUnread, byFavorites, emailList } = useSelector(
     (state) => state
   );
   const dispatch = useDispatch();
 
   // storing a list of items marked as favorites
   const favList = emailList && emailList.filter((item) => item.isFav);
-
-  let filterdList;
-  let filterdData;
-
-  // const changeData = emailList && emailList.filter();
-  // console.log("changeData", changeData);
-
-  // const filterdList = emailList
-  //   ? byUnread
-  //     ? emailList.filter((item, i) => !item.isRead)
-  //     : byUnread
-  //     ? emailList.filter((item, i) => item.isRead)
-  //     : byFavorites
-  //     ? emailList.filter((item, i) => item.isFav)
-  //     : ""
-  //   : "";
-
-  // console.log("filterdfvdfList", filterdList[0]);
-
-  // if (emailList && byRead) {
-  //   filterdList = emailList.filter((item, i) => item.isRead);
-  // }
-  // if (emailList && byUnread) {
-  //   filterdList = emailList.filter((item, i) => !item.isRead);
-  //   filterdData = [...filterdList].shift();
-  // }
-
-  // if (emailList && byFavorites) {
-  //   filterdList = emailList.filter((item, i) => item.isFav);
-  // }
-
-  console.log("filterdList", filterdList);
-
-  console.log("filterdData", filterdData);
-  console.log("meta_data", meta_data);
 
   return (
     <div className="filters">
@@ -59,8 +24,7 @@ const Filters = () => {
           dispatch({ type: SORT_BY_UNREAD, payload: true });
           dispatch({ type: SORT_BY_READ, payload: false });
           dispatch({ type: SORT_BY_FAVORITES, payload: false });
-          dispatch({ type: "FILTER_TYPE", payload: "unread" });
-          // dispatch({ type: META_DATA, payload: filterdData });
+          dispatch({ type: FILTER_TYPE, payload: "unread" });
         }}
         className={byUnread ? "filterd-block" : "unfilterd-block"}
       >
@@ -79,7 +43,7 @@ const Filters = () => {
       </div>
       <div
         onClick={() => {
-          if (favList.length > 0) {
+          if (favList.length >= 0) {
             dispatch({ type: SORT_BY_FAVORITES, payload: true });
             dispatch({ type: SORT_BY_UNREAD, payload: false });
             dispatch({ type: SORT_BY_READ, payload: false });
@@ -91,7 +55,7 @@ const Filters = () => {
       >
         favorites
       </div>
-      <div
+      {/* <div
         className="unfilterd-block"
         onClick={() => {
           dispatch({ type: SORT_BY_FAVORITES, payload: false });
@@ -102,7 +66,7 @@ const Filters = () => {
       >
         {" "}
         Remove Filters
-      </div>
+      </div> */}
     </div>
   );
 };

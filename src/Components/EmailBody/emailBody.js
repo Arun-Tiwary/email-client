@@ -55,6 +55,7 @@ const EmailBody = () => {
       {meta_data &&
         transformedList() &&
         transformedList().length > 0 &&
+        !byUnread &&
         !byFavorites && <div className="template-body">{<BodyCard />}</div>}
     </div>
   );

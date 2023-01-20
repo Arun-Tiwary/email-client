@@ -107,7 +107,7 @@ const BodyCard = ({ value }) => {
                   });
                 }}
               >
-                Add to Favorite
+                Mark as Favorite
               </button>
 
               {/*/////////////////////////  */}

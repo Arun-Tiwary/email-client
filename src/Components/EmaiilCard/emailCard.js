@@ -26,7 +26,6 @@ const EmailCard = ({ data }) => {
     backgroundColor: background1,
   });
   const dispatch = useDispatch();
-  console.log(currentId);
 
   let originalDate = new Date(data.date);
   const convertedDate = dateConverter(originalDate);
@@ -35,7 +34,7 @@ const EmailCard = ({ data }) => {
     <>
       <div
         onClick={async (e) => {
-          console.log("onclick triggered");
+          // console.log("onclick triggered");
           setBackgrounColor({ backgroundColor: background2 });
 
           dispatch({ type: MARK_AS_READ, payload: data });

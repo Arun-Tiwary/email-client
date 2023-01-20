@@ -7,7 +7,7 @@ import BodyCard from "../BodyCard/bodyCard";
 import EmailCard from "../EmaiilCard/emailCard";
 
 const EmailBody = () => {
-  console.log("Emailbody entered");
+  // console.log("Emailbody entered");
   const { byRead, byUnread, byFavorites, emailList, meta_data } = useSelector(
     (state) => state
   );
@@ -30,7 +30,6 @@ const EmailBody = () => {
 
     if (byRead) {
       filterdList = emailList.filter((item) => item.isRead);
-      console.log("filterdList", filterdList);
     }
 
     if (byUnread) {

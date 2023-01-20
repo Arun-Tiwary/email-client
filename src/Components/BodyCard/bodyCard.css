@@ -23,7 +23,7 @@
 .favorite-button {
   color: var(--background);
   height: 36px;
-  border-radius: 20px;
+  border-radius: 16px;
   background-color: var(--accent);
   border: 1px solid var(--border);
   cursor: pointer;

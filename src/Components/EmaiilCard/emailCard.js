@@ -21,6 +21,7 @@ const EmailCard = ({ data }) => {
   const _id = data.id;
   const imageValue = data.from.name.split("");
   const [currentId, setcurrentId] = useState("");
+  console.log(currentId);
 
   const [backgroundColor, setBackgrounColor] = useState({
     backgroundColor: background1,
